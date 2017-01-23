@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    p params
     @post = Post.find(params[:id])
   end
 
@@ -13,11 +14,18 @@ class PostsController < ApplicationController
   end
 
   def create
+    @user = User.find(params[:user_id])
     @post = Post.create(post_params)
     if @post.persisted?
-      redirect_to action: show
+      redirect_to action: "show", id: @post.id
     else
       render "new"
     end
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :content, :author_id)
   end
 end

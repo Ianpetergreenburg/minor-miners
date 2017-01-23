@@ -1,0 +1,11 @@
+<h1> Login </h1>
+
+<% unless @user %>
+  <p>username and password do not match</p>
+<% end %>
+
+<form action='/login' method='post'>
+  <input type="text" name="user[username]" placeholder="Username" value="<%= @user.try(:username)%>">
+  <input type="password" name="user[password]" placeholder="password">
+  <input type="submit" value="Register">
+</form>

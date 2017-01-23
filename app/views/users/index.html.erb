@@ -1,0 +1,7 @@
+<h1> All of our users </h1>
+
+<% @users.each do |user| %>
+  <div>
+    <%= link_to "Profile: #{user.username}", user_path(user) %>
+  </div>
+<% end %>

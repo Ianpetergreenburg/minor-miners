@@ -1,0 +1,15 @@
+<h1> NEW POST </h1>
+
+<% if !@post.errors.empty? %>
+  <ul>
+  <% @post.errors.messages.each do |error| %>
+    <li><%= error.join(' ').capitalize %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<form action='/users' method='post'>
+  <input type="text" name="post[title]" placeholder="Title" value="<%= @post.try(:title)%>">
+  <textarea name="post[content]" placeholder="Content"><%= @post.try(:content)%></textarea>
+  <input type="submit" value="Register">
+</form>

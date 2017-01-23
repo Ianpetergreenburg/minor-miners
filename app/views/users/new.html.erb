@@ -1,0 +1,15 @@
+<h1> NEW USER </h1>
+
+<% if !@user.errors.empty? %>
+  <ul>
+  <% @user.errors.messages.each do |error| %>
+    <li><%= error.join(' ').capitalize %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<form action='/users' method='post'>
+  <input type="text" name="user[username]" placeholder="Username" value="<%= @user.try(:username)%>">
+  <input type="password" name="user[password]" placeholder="password">
+  <input type="submit" value="Register">
+</form>

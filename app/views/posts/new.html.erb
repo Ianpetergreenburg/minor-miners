@@ -1,0 +1,16 @@
+<h1> NEW POST </h1>
+
+<% if !@post.errors.empty? %>
+  <ul>
+  <% @post.errors.messages.each do |error| %>
+    <li><%= error.join(' ').capitalize %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<form action='/users/<%= @user.id %>/posts' method='post'>
+  <input type="hidden" name="post[author_id]" value="<%= @user.id %>">
+  <input type="text" name="post[title]" placeholder="Title" value="<%= @post.try(:title)%>">
+  <textarea name="post[content]" placeholder="Content"><%= @post.try(:content)%></textarea>
+  <input type="submit" value="Submit Post">
+</form>
